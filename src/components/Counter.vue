@@ -42,7 +42,7 @@ export default {
         add : function(){
             if(this.input1!=""){
                 console.log(this.input1);
-                this.items.push({name:this.input1},{selected:true})
+                this.items.push({name:this.input1,selected:true})
                 this.input1 = "";
                 return ;
             }
@@ -50,7 +50,7 @@ export default {
         add2 : function(){
             if(this.input1!=""){
                 console.log(this.input1);
-                this.items.push({name:this.input1},{selected:false})
+                this.items.push({name:this.input1,selected:false})
                 this.input1 = "";
                 return ;
             }
