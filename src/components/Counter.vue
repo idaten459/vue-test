@@ -1,21 +1,20 @@
 <template>
     <div>
-        <div>{{countMassage}}</div>
-        <button @click="count++">click!</button>
-        <button @click="count=0">reset!</button><br>
         <input type="text" v-model="input1" placeholder="input here">
         <button @click="add">add</button>
-        <button @click="add2">add2</button>
+        <!--<button @click="add2">add2</button>-->
         <button @click="dele">delete</button>
+        <button @click="init">init</button>
+        <button @click="clear">clear</button>
         <ul>
             <li v-for="item in items" :key="item.name">
                 <template v-if="!item.selected">
-                    <span v-bind:class="{ list: isList }" @click="item.selected ? item.selected=false:item.selected=true">
+                    <span v-bind:class="{ notSelectedList: isList }" @click="item.selected ? item.selected=false:item.selected=true">
                         {{item.name}}
                     </span>
                 </template>
                 <template v-else>
-                    <span v-bind:class="{ list2: isList }" @click="item.selected ? item.selected=false:item.selected=true">
+                    <span v-bind:class="{ selectedList: isList }" @click="item.selected ? item.selected=false:item.selected=true">
                         {{item.name}}
                     </span>
                 </template>
@@ -45,19 +44,23 @@ export default {
             this.count = 0;
             return ;
         },
-        add : function(){
-            if(this.input1!=""){
-                console.log(this.input1);
-                this.items.push({name:this.input1,selected:true})
-                this.input1 = "";
-                return ;
-            }
+        init : function(){
+            let getjson = localStorage.getItem('key');
+            let obj = JSON.parse(getjson);
+            this.items = obj;
         },
-        add2 : function(){
+        change_strage: function(){
+            let setjson = JSON.stringify(this.items);
+            //onsole.log(setjson);
+            localStorage.setItem('key', setjson);
+            return ;
+        },
+        add : function(){
             if(this.input1!=""){
                 console.log(this.input1);
                 this.items.push({name:this.input1,selected:false})
                 this.input1 = "";
+                this.change_strage();
                 return ;
             }
         },
@@ -69,6 +72,12 @@ export default {
                 }
                 //this.items.splice()
             }
+            this.change_strage();
+            return ;
+        },
+        clear : function(){
+            console.log("clear");
+            localStorage.removeItem('key');
         }
     }
 };
@@ -82,13 +91,24 @@ ul {
 }
 li{
     font-size:24px;
+    font-family: "ＭＳ ゴシック",sans-serif;
 }
-.list{
+.selectedList{
     /*text-decoration : line-through;*/
     color : rgb(185, 185, 185);
-    /*font-size:30px;*/
 }
-.list2{
+.notSelectedList2{
     font-weight: 700;
+}
+button{
+    font-size: 24px;
+    width: 100px;
+    height: 50px;
+}
+input[type=text]{
+    height: 50px;
+    width: 200px;
+    font-size: 24px;
+    border:solid 1px #EEA34A;
 }
 </style>
