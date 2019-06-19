@@ -15,7 +15,7 @@
                     </span>
                 </template>
                 <template v-else>
-                    <span @click="item.selected ? item.selected=false:item.selected=true">
+                    <span v-bind:class="{ list2: isList }" @click="item.selected ? item.selected=false:item.selected=true">
                         {{item.name}}
                     </span>
                 </template>
@@ -84,8 +84,11 @@ li{
     font-size:24px;
 }
 .list{
-    text-decoration : line-through;
-    color : rgb(180, 180, 180);
+    /*text-decoration : line-through;*/
+    color : rgb(185, 185, 185);
     /*font-size:30px;*/
+}
+.list2{
+    font-weight: 700;
 }
 </style>
