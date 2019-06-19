@@ -1,29 +1,9 @@
 # intro
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## add
+inputに入力した文字をlistに追加します
+## delete
+選択したlistの要素を消去します
+## init
+localStorageに保存したlistを復元します
+## clear
+localStorageを初期化します
