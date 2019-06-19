@@ -6,13 +6,18 @@
         <input type="text" v-model="input1" placeholder="input here">
         <button @click="add">add</button>
         <button @click="add2">add2</button>
+        <button @click="dele">delete</button>
         <ul>
             <li v-for="item in items" :key="item.name">
                 <template v-if="!item.selected">
-                    {{item.name+"po"}}
+                    <span v-bind:class="{ list: isList }" @click="item.selected ? item.selected=false:item.selected=true">
+                        {{item.name}}
+                    </span>
                 </template>
                 <template v-else>
-                    {{item.name+"hoge"}}
+                    <span @click="item.selected ? item.selected=false:item.selected=true">
+                        {{item.name}}
+                    </span>
                 </template>
             </li>
         </ul>
@@ -26,7 +31,8 @@ export default {
         return {
             count: 0,
             input1 : "",
-            items:[]
+            items:[],
+            isList:true
         };
     },
     computed:{
@@ -54,6 +60,15 @@ export default {
                 this.input1 = "";
                 return ;
             }
+        },
+        dele : function(){
+            console.log("delete");
+            for(let i = this.items.length-1;i>=0;--i){
+                if(!this.items[i].selected){
+                    this.items.splice(i,1);
+                }
+                //this.items.splice()
+            }
         }
     }
 };
@@ -65,5 +80,12 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-
+li{
+    font-size:24px;
+}
+.list{
+    text-decoration : line-through;
+    color : rgb(180, 180, 180);
+    /*font-size:30px;*/
+}
 </style>
