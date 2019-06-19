@@ -9,7 +9,7 @@
         <ul>
             <li v-for="item in items" :key="item.name">
                 <template v-if="!item.selected">
-                    <span v-bind:class="{ notSelectedList: isList }" @click="item.selected ? item.selected=false:item.selected=true">
+                     <span v-bind:class="{ notSelectedList: isList }" @click="item.selected ? item.selected=false:item.selected=true">
                         {{item.name}}
                     </span>
                 </template>
@@ -67,7 +67,7 @@ export default {
         dele : function(){
             console.log("delete");
             for(let i = this.items.length-1;i>=0;--i){
-                if(!this.items[i].selected){
+                if(this.items[i].selected){
                     this.items.splice(i,1);
                 }
                 //this.items.splice()
